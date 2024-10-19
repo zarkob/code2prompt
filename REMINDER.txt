@@ -1,0 +1,7 @@
+Console commands to build plugin:
+
+./gradlew clean
+./gradlew buildPlugin
+
+//to open test version of IDE to test plugin
+./gradlew runIde
