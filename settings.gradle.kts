@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "filestoprompt"
+rootProject.name = "code2prompt"

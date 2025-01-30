@@ -1,30 +1,57 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.example.filestoprompt</id>
+    <id>com.github.zarkob.code2prompt</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Filestoprompt</name>
+    <name>Code2Prompt</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
-
+    <vendor url="https://github.com/zarkob">zarkob</vendor>
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager. -->
     <description><![CDATA[
-    A plugin that copies the full paths and contents of selected files or files within selected folders to the clipboard in a format suitable for LLMs.<br>
-    <em>most HTML tags may be used</em>
-  ]]></description>
+            <h2>🚀 Code2Prompt – LLM-Optimized Code & Error Exporter</h2>
+            <p>
+                Code2Prompt is a JetBrains plugin that streamlines copying <b>file paths</b>, <b>content</b>,
+                and <b>error messages</b> from IntelliJ for <b>seamless AI-assisted debugging, analysis, and sharing</b>.
+                Designed for <b>Large Language Models (LLMs)</b>, it ensures optimal formatting for AI-driven development workflows.
+            </p>
+
+            <h2>📌 Key Features</h2>
+            <ul>
+                <li>📂 <b>Extract Code for AI & Debugging:</b> Right-click a file or folder in <i>Project View</i> → Select <b>"Files to Prompt"</b> to copy its contents.</li>
+                <li>🚫 <b>Exclude Unwanted Files:</b> Right-click in <i>Project View</i> → Select <b>"Create .topromptignore"</b> to exclude files (e.g., binary, images).</li>
+                <li>⚙️ <b>Customize Exclusions:</b> Configure file rules inside the <code>.topromptignore</code> file.</li>
+                <li>🐞 <b>Copy Code Errors:</b> Right-click on highlighted errors in the <i>Editor</i> → Select <b>"Error to Prompt"</b> to copy error messages with line references and full code.</li>
+                <li>⚡ <b>Copy Errors Without Code:</b> Use <b>"Error to Prompt - No Code"</b> to copy error messages <i>without</i> file content.</li>
+            </ul>
+
+            <h2>🔗 More Information</h2>
+            <p>
+                Visit our <a href="https://github.com/zarkob/code2prompt">GitHub repository</a> for details, contributions, and updates.
+            </p>
+]]></description>
+
+
+
 
     <actions>
-        <action id="FilesToPromptAction" class="com.example.FilesToPromptAction" text="Files to Prompt" icon="/icons/icon4.svg">
+        <action id="FilesToPromptAction" class="com.code2prompt.FilesToPromptAction" text="Files to Prompt" icon="/icons/pluginIcon_yellow_20x20.svg">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt q"/>
         </action>
-        <action id="CreateCopyIgnoreAction" class="com.example.CreateCopyIgnoreAction" text="Create .copyignore" icon="/icons/icon4.svg">
+        <action id="CreateCopyIgnoreAction" class="com.code2prompt.CreateToPromptIgnoreAction" text="Create .topromptignore" icon="/icons/pluginIcon_blue_20x20.svg">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+        <action id="ErrorToPromptAction" class="com.code2prompt.ErrorToPromptAction" text="Error to Prompt" icon="/icons/pluginIcon_red_20x20.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="ErrorToPromptNoCodeAction" class="com.code2prompt.ErrorToPromptNoCodeAction" text="Error to Prompt - No Code" icon="/icons/pluginIcon_purple_20x20.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 
@@ -35,7 +62,10 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <!-- Define notification groups -->
+        <notificationGroup id="FilesToPromptGroup" displayType="BALLOON" isLogByDefault="false"/>
+        <notificationGroup id="CreateToPromptIgnoreGroup" displayType="BALLOON" isLogByDefault="false"/>
+        <notificationGroup id="ErrorToPromptGroup" displayType="BALLOON" isLogByDefault="false"/>
     </extensions>
 
 </idea-plugin>

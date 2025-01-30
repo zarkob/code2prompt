@@ -1,11 +1,12 @@
-package com.example
+package com.code2prompt
 
+import com.intellij.notification.NotificationGroupManager
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
 import java.awt.datatransfer.StringSelection
 import java.io.File
@@ -13,6 +14,11 @@ import java.nio.charset.StandardCharsets
 import java.util.regex.Pattern
 
 class FilesToPromptAction : AnAction() {
+
+    companion object {
+        private val NOTIFICATION_GROUP = NotificationGroupManager.getInstance()
+            .getNotificationGroup("FilesToPromptGroup")
+    }
 
     override fun actionPerformed(e: AnActionEvent) {
         // Get the selected files or folders
@@ -23,7 +29,7 @@ class FilesToPromptAction : AnAction() {
             return
         }
 
-        // Load ignore patterns from .copyignore file
+        // Load ignore patterns from .topromptignore file
         val project = e.project ?: return
         val ignorePatterns = loadIgnorePatterns(project)
 
@@ -41,7 +47,10 @@ class FilesToPromptAction : AnAction() {
         CopyPasteManager.getInstance().setContents(StringSelection(result))
 
         // Notify the user
-        Messages.showInfoMessage(project, "Files data copied to clipboard.", "Files to Prompt")
+        NOTIFICATION_GROUP.createNotification(
+            "Files data copied to clipboard.",
+            NotificationType.INFORMATION
+        ).notify(project)
     }
 
     val MAX_FILE_SIZE: Long = (5 * 1024 * 1024 // 5 MB
@@ -69,9 +78,9 @@ class FilesToPromptAction : AnAction() {
         val baseDir = project.basePath?.let { File(it) } ?: return null
         val gitIgnoreFile = File(baseDir, ".gitignore")
         return if (gitIgnoreFile.exists()) {
-            File(baseDir, ".copyignore")
+            File(baseDir, ".topromptignore")
         } else {
-            File(baseDir, ".copyignore")
+            File(baseDir, ".topromptignore")
         }
     }
 
@@ -109,7 +118,7 @@ class FilesToPromptAction : AnAction() {
     }
 
     private fun formatFileData(path: String, content: String): String {
-        return "### File: " + path + "\n````````````" + getFileExtension(path) + "\n" + content + "\n````````````\n"
+        return "### File: " + path + "\n```" + getFileExtension(path) + "\n" + content + "\n```\n"
     }
 
     private fun getFileExtension(path: String): String {
@@ -118,34 +127,5 @@ class FilesToPromptAction : AnAction() {
             return path.substring(lastIndex + 1)
         }
         return ""
-    }
-}
-
-class CreateCopyIgnoreAction : AnAction() {
-    override fun actionPerformed(e: AnActionEvent) {
-        val project = e.project ?: return
-        val baseDir = project.basePath?.let { File(it) } ?: return
-
-        val gitIgnoreFile = File(baseDir, ".gitignore")
-        val copyIgnoreFile = File(baseDir, ".copyignore")
-
-        if (!copyIgnoreFile.exists()) {
-            val ignoreContent = StringBuilder()
-
-            // Include content from .gitignore if it exists
-            if (gitIgnoreFile.exists()) {
-                ignoreContent.append(gitIgnoreFile.readText()).append("\n")
-            }
-
-            // Add common patterns for image formats and binary files
-            ignoreContent.append("*.jpg\n*.jpeg\n*.png\n*.gif\n*.bmp\n*.webp\n*.svg\n")
-            ignoreContent.append("*.exe\n*.dll\n*.so\n*.bin\n*.class\n*.jar\n*.zip\n*.tar\n*.gz\n")
-
-            copyIgnoreFile.writeText(ignoreContent.toString())
-
-            Messages.showInfoMessage(project, ".copyignore file created successfully.", "Create .copyignore")
-        } else {
-            Messages.showInfoMessage(project, ".copyignore file already exists.", "Create .copyignore")
-        }
     }
 }
