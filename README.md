@@ -89,6 +89,6 @@ out/
 5. Open a Pull Request.
 
 ## 📄 License
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](https://github.com/zarkob/code2prompt/tree/master?tab=MIT-1-ov-file) file for details.
 
 🚀 Happy coding with **Code2Prompt**! 🎯
