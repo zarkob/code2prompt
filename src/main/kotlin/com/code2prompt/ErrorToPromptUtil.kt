@@ -40,13 +40,11 @@ object ErrorToPromptUtil {
             HighlightSeverity.ERROR,
             HighlightSeverity.WARNING,
             HighlightSeverity.WEAK_WARNING,
-            HighlightSeverity.INFORMATION,
             HighlightSeverity.GENERIC_SERVER_ERROR_OR_WARNING,
-            HighlightInfoTypeSeverityByKey.TODO,
             HighlightInfoTypeSeverityByKey.ERROR,
             HighlightInfoTypeSeverityByKey.WARNING,
             HighlightInfoTypeSeverityByKey.WEAK_WARNING,
-            HighlightInfoTypeSeverityByKey.INFORMATION,
+            HighlightInfoTypeSeverityByKey.GENERIC_WARNINGS_OR_ERRORS_FROM_SERVER,
             HighlightInfoTypeSeverityByKey.DEPRECATED,
             HighlightInfoTypeSeverityByKey.UNUSED_SYMBOL,
             HighlightInfoTypeSeverityByKey.UNUSED_SYMBOL_SHORT_NAME,
@@ -54,7 +52,6 @@ object ErrorToPromptUtil {
             HighlightInfoTypeSeverityByKey.MARKED_FOR_REMOVAL,
             HighlightInfoTypeSeverityByKey.WRONG_REF,
             HighlightInfoTypeSeverityByKey.POSSIBLE_PROBLEM,
-            HighlightInfoTypeSeverityByKey.GENERIC_WARNINGS_OR_ERRORS_FROM_SERVER,
             HighlightInfoTypeSeverityByKey.TODO
         )
 
