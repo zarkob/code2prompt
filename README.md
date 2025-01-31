@@ -71,7 +71,7 @@ out/
 ```
 
 ## 🔗 Links
-- 📌 **JetBrains Plugin Marketplace**: [Marketplace Link](https://plugins.jetbrains.com/)
+- 📌 **JetBrains Plugin Marketplace**: [Marketplace Link](https://plugins.jetbrains.com/plugin/26440-code2prompt)
 - 🛠 **Source Code**: [GitHub Repository](https://github.com/zarkob/code2prompt)
 - 🚀 **Releases**: [Download Latest](https://github.com/zarkob/code2prompt/releases)
 - ❓ **Report Issues**: [GitHub Issues](https://github.com/zarkob/code2prompt/issues)
