@@ -104,9 +104,6 @@ object ErrorToPromptUtil {
         fileType: String
     ): String {
         val fileContentDisplay = if (fileContent.isNotEmpty()) """
-            
-            OF THE FILE:
-            ### File: $filePath
             ```$fileType
                     $fileContent
             ```
@@ -118,6 +115,9 @@ object ErrorToPromptUtil {
 
             AT THE LINE $lineNumber:
             $errorLine
+            
+            OF THE FILE:
+            ### File: $filePath
             $fileContentDisplay
             -----------------------
         """.trimIndent()
