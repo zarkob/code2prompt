@@ -36,6 +36,32 @@
             </p>
 ]]></description>
 
+    <change-notes><![CDATA[
+        <h2>🚀 Code2Prompt – Version 1.0.2 – What's New?</h2>
+
+        <h3>🔹 Bug Fixes & Code Refinements:</h3>
+        <ul>
+            <li>
+                🛠️ <b>Fixed Formatting Issues in Error Messages:</b>
+                <ul>
+                    <li>Moved <b>file path information</b> placement for better readability in copied error prompts.</li>
+                    <li>Ensured <b>correct Markdown formatting</b> for file contents in LLM-ready prompts.</li>
+                </ul>
+            </li>
+            <li>
+                🔧 <b>Removed Redundant Entries in Error Severity Mapping:</b>
+                Cleaned up severity filtering to improve <b>performance and accuracy</b>.
+            </li>
+        </ul>
+
+        <p>✨ <b>Get the update now and streamline your AI-assisted coding workflow!</b> 🚀</p>
+
+        <p>📌 <b>More info & feedback:</b>
+            <a href="https://github.com/zarkob/code2prompt">GitHub Repository</a>
+        </p>
+]]></change-notes>
+
+
 
 
 
