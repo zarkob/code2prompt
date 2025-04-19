@@ -5,9 +5,9 @@ import com.code2prompt.ErrorToPromptUtil.getErrorDescriptionAtOffset
 import com.code2prompt.ErrorToPromptUtil.getLineText
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.notification.NotificationGroupManager
+import com.intellij.notification.NotificationType
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.ide.CopyPasteManager
 import java.awt.datatransfer.StringSelection
