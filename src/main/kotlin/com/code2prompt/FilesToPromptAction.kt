@@ -51,6 +51,8 @@ class FilesToPromptAction : AnAction() {
         ).notify(project)
     }
 
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
+
     val MAX_FILE_SIZE: Long = (5 * 1024 * 1024 // 5 MB
             ).toLong()
 

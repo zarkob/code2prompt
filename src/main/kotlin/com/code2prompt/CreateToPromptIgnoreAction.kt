@@ -49,4 +49,6 @@ class CreateToPromptIgnoreAction : AnAction() {
             ).notify(project)
         }
     }
+
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
 }
