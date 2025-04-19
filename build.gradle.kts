@@ -1,7 +1,7 @@
 plugins {
     // Standard Java/Kotlin
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.kotlin.jvm") version "2.1.20"
 
     // IntelliJ Platform Gradle Plugin 2.x
     id("org.jetbrains.intellij.platform") version "2.2.1"
@@ -63,7 +63,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("241") // Keep compatible with older versions if desired
+        sinceBuild.set("251") // Keep compatible with older versions if desired
         untilBuild.set("252.*") // Set upper bound to 2025.1 branch
     }
 
