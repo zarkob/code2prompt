@@ -45,7 +45,7 @@ class ErrorToPromptAction : AnAction() {
         ).notify(e.project)
     }
 
-
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
 
     override fun update(e: AnActionEvent) {
         val editor = e.getData(CommonDataKeys.EDITOR) as? EditorEx
