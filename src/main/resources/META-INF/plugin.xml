@@ -37,8 +37,13 @@
 ]]></description>
 
     <change-notes><![CDATA[
-        <h2>🚀 Code2Prompt – Version 1.0.3 – What's New?</h2>
+        <h2>🚀 Code2Prompt – Version 1.0.4 – What's New?</h2>
+        <h3>🔹 Compatibility Update:</h3>
+        <ul>
+            <li>🆙 Updated plugin compatibility to support IntelliJ IDEA 2025.3 and higher.</li>
+        </ul>
 
+        <h2>🚀 Code2Prompt – Version 1.0.3 – Previous Changes</h2>
         <h3>✨ Enhancements & Fixes:</h3>
         <ul>
             <li>✅ Updated plugin compatibility to support IntelliJ IDEA 2025.1 and higher.</li>

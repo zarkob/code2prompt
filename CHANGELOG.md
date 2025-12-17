@@ -1,3 +1,8 @@
+### 🚀 Code2Prompt – Version 1.0.4 – What's New?
+
+🔹 **Compatibility Update:**
+- 🆙 **Updated plugin compatibility to support IntelliJ IDEA 2025.3 and higher.**
+
 ### 🚀 Code2Prompt – Version 1.0.2 – What's New?
 
 🔹 **Bug Fixes & Code Refinements:**

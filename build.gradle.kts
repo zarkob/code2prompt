@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.code2prompt"
-version = "1.0.3" // Updated version
+version = "1.0.4" // Updated version
 
 // If you’re using gradle.properties for platformType and platformVersion, e.g.:
 //   platformType=IC
@@ -64,7 +64,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("251") // Keep compatible with older versions if desired
-        untilBuild.set("254.*") // Set upper bound to 2025.1 branch
+        // untilBuild.set("254.*") // Removed upper bound to support 2025.3 and higher
     }
 
     signPlugin {
