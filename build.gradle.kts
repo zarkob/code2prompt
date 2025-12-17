@@ -64,7 +64,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("251") // Keep compatible with older versions if desired
-        untilBuild.set("252.*") // Set upper bound to 2025.1 branch
+        untilBuild.set("254.*") // Set upper bound to 2025.1 branch
     }
 
     signPlugin {

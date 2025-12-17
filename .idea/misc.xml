@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="Michael.U.Bergens.CopyNixDirPlugin">
+    <option name="replaceWith" value="" />
+    <option name="search" value="" />
+    <option name="tryString" value="C:\dir\blah\meh\file.ext" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="24" project-jdk-type="JavaSDK" />
+</project>

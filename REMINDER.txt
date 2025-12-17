@@ -5,3 +5,25 @@ Console commands to build plugin:
 
 //to open test version of IDE to test plugin
 ./gradlew runIde
+
+--- 
+
+**JDK Configuration for Gradle on Different Machines:**
+
+If you encounter `java.lang.UnsupportedClassVersionError` or need to use a specific Java Development Kit (JDK) version for Gradle builds (e.g., when the project requires Java 17+ and your default `JAVA_HOME` is an older version), you have two primary methods:
+
+1.  **Project-Specific Configuration (Recommended):**
+    Edit the `gradle.properties` file in the root of the project and add or update the `org.gradle.java.home` property to point to your desired JDK installation path.
+    Example for Windows:
+    ```properties
+    org.gradle.java.home=C:\\Path\\To\\Your\\JDK-17
+    ```
+    (Use double backslashes `\\` or single forward slashes `/` for paths on Windows.)
+
+2.  **Command-Line Override (Temporary):**
+    You can specify the JDK for a single Gradle command by using the `-Dorg.gradle.java.home` flag:
+    Example for Windows:
+    ```powershell
+    ./gradlew clean -Dorg.gradle.java.home="C:\\Path\\To\\Your\\JDK-17"
+    ```
+    Remember to replace `C:\\Path\\To\\Your\\JDK-17` with the actual path to your JDK 17 (or newer) installation.
