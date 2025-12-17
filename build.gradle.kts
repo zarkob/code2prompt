@@ -43,15 +43,6 @@ repositories {
     }
 }
 
-changelog {
-    version.set(project.version.toString())
-    // Regex to match: ### 🚀 Code2Prompt – Version 1.0.4 – What's New?
-    headerParserRegex.set(".*Version\\s+(\\d+\\.\\d+\\.\\d+).*")
-    itemPrefix.set("-")
-    keepUnreleasedSection.set(false)
-    groups.set(emptyList())
-}
-
 dependencies {
     // This block replaces the old `intellij { ... }` block from the 1.x plugin.
     intellijPlatform {
@@ -87,10 +78,11 @@ tasks {
     }
 
     patchPluginXml {
-        val pluginDescriptionContent = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+        val readmeContent = providers.fileContents(layout.projectDirectory.file("README.md")).asBytes.map {
+            val text = String(it, Charsets.UTF_8)
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
-            val lines = it.lines()
+            val lines = text.lines()
             if (!lines.contains(start) || !lines.contains(end)) {
                 throw GradleException("README.md must contain '$start' and '$end'")
             }
@@ -100,22 +92,45 @@ tasks {
             val document = parser.parse(content)
             renderer.render(document)
         }
-        pluginDescription.set(pluginDescriptionContent)
+        pluginDescription.set(readmeContent)
 
-        // Get the latest available change notes from the changelog file
-        changeNotes.set(provider {
-            val version = project.version.toString()
-            val item = changelog.getOrNull(version)
-            if (item != null) {
-                changelog.renderItem(item, org.jetbrains.changelog.Changelog.OutputType.HTML)
-            } else {
-                // Fallback: Try to find a header that contains the version string manually if the plugin fails
-                ""
+        val currentVersion = project.version.toString()
+        val changelogContent = providers.fileContents(layout.projectDirectory.file("CHANGELOG.md")).asBytes.map {
+            val text = String(it, Charsets.UTF_8)
+            val lines = text.lines()
+            val version = currentVersion
+            
+            // Find the start line: "### ... Version 1.0.4 ..."
+            val startLineIndex = lines.indexOfFirst { line -> 
+                line.trim().startsWith("###") && line.contains("Version $version") 
             }
-        })
+            
+            if (startLineIndex == -1) {
+                return@map "" // Version not found
+            }
+
+            // Find the end line: The next "###" header, or end of file
+            // We search starting from the line AFTER the start line
+            val remainingLines = lines.drop(startLineIndex + 1)
+            val endLineIndex = remainingLines.indexOfFirst { line -> 
+                line.trim().startsWith("###") 
+            }
+            
+            val rawNotes = if (endLineIndex == -1) {
+                remainingLines
+            } else {
+                remainingLines.subList(0, endLineIndex)
+            }.joinToString("\n").trim()
+
+            val parser = Parser.builder().build()
+            val renderer = HtmlRenderer.builder().build()
+            val document = parser.parse(rawNotes)
+            renderer.render(document)
+        }
+        changeNotes.set(changelogContent)
 
         sinceBuild.set("251") // Keep compatible with older versions if desired
-        untilBuild.set("255.*")
+        untilBuild.set("253.*")
     }
 
     signPlugin {
