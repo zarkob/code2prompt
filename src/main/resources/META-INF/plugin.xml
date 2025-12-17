@@ -1,4 +1,11 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<!--
+This plugin.xml file is primarily a template.
+The <description> and <change-notes> sections are automatically populated
+from README.md and CHANGELOG.md respectively during the Gradle build process.
+The final plugin.xml for the artifact will be located in the build directory,
+e.g., build/resources/main/META-INF/plugin.xml.
+-->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.github.zarkob.code2prompt</id>
@@ -9,72 +16,14 @@
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor url="https://github.com/zarkob">zarkob</vendor>
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager. -->
-    <description><![CDATA[
-            <h2>🚀 Code2Prompt – LLM-Optimized Code & Error Exporter</h2>
-            <p>
-                Code2Prompt is a JetBrains plugin that streamlines copying <b>file paths</b>, <b>content</b>,
-                and <b>error messages</b> from IntelliJ for <b>seamless AI-assisted debugging, analysis, and sharing</b>.
-                Designed for <b>Large Language Models (LLMs)</b>, it ensures optimal formatting for AI-driven development workflows.
-            </p>
+    <!-- This section will be overridden by the content from README.md during the Gradle build. -->
+    <description><![CDATA[Automatically populated from README.md during build.]]></description>
 
-            <h2>📌 Key Features</h2>
-            <ul>
-                <li>📂 <b>Extract Code for AI & Debugging:</b> Right-click a file or folder in <i>Project View</i> → Select <b>"Files to Prompt"</b> to copy its contents.</li>
-                <li>🚫 <b>Exclude Unwanted Files:</b> Right-click in <i>Project View</i> → Select <b>"Create .topromptignore"</b> to exclude files (e.g., binary, images).</li>
-                <li>⚙️ <b>Customize Exclusions:</b> Configure file rules inside the <code>.topromptignore</code> file.</li>
-                <li>🐞 <b>Copy Code Errors:</b> Right-click on highlighted errors in the <i>Editor</i> → Select <b>"Error to Prompt"</b> to copy error messages with line references and full code.</li>
-                <li>⚡ <b>Copy Errors Without Code:</b> Use <b>"Error to Prompt - No Code"</b> to copy error messages <i>without</i> file content.</li>
-            </ul>
-
-            <h2>🔗 More Information</h2>
-            <p>
-                Visit our <a href="https://github.com/zarkob/code2prompt">GitHub repository</a> for details, contributions, and updates.
-            </p>
-]]></description>
-
-    <change-notes><![CDATA[
-        <h2>🚀 Code2Prompt – Version 1.0.4 – What's New?</h2>
-        <h3>🔹 Compatibility Update:</h3>
-        <ul>
-            <li>🆙 Updated plugin compatibility to support IntelliJ IDEA 2025.3 and higher.</li>
-        </ul>
-
-        <h2>🚀 Code2Prompt – Version 1.0.3 – Previous Changes</h2>
-        <h3>✨ Enhancements & Fixes:</h3>
-        <ul>
-            <li>✅ Updated plugin compatibility to support IntelliJ IDEA 2025.1 and higher.</li>
-            <li>🔧 Resolved `ActionUpdateThread` deprecation warnings by explicitly running actions on a background thread (BGT), improving UI responsiveness.</li>
-        </ul>
-
-        <h3>🔹 Previous Changes (v1.0.2):</h3>
-        <ul>
-            <li>
-                🛠️ <b>Fixed Formatting Issues in Error Messages:</b>
-                <ul>
-                    <li>Moved <b>file path information</b> placement for better readability in copied error prompts.</li>
-                    <li>Ensured <b>correct Markdown formatting</b> for file contents in LLM-ready prompts.</li>
-                </ul>
-            </li>
-            <li>
-                🔧 <b>Removed Redundant Entries in Error Severity Mapping:</b>
-                Cleaned up severity filtering to improve <b>performance and accuracy</b>.
-            </li>
-        </ul>
-
-        <p>✨ <b>Get the update now and streamline your AI-assisted coding workflow!</b> 🚀</p>
-
-        <p>📌 <b>More info & feedback:</b>
-            <a href="https://github.com/zarkob/code2prompt">GitHub Repository</a>
-        </p>
-]]></change-notes>
-
-
-
-
+    <!-- Change notes for the plugin displayed on the Plugin Page and IDE Plugin Manager. -->
+    <!-- This section will be overridden by the content from CHANGELOG.md during the Gradle build. -->
+    <change-notes><![CDATA[Automatically populated from CHANGELOG.md during build.]]></change-notes>
 
     <actions>
         <action id="FilesToPromptAction" class="com.code2prompt.FilesToPromptAction" text="Files to Prompt" icon="/icons/pluginIcon_yellow_20x20.svg">

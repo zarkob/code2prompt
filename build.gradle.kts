@@ -1,3 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.commonmark:commonmark:0.22.0")
+    }
+}
+
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
+
 plugins {
     // Standard Java/Kotlin
     id("java")
@@ -5,6 +17,9 @@ plugins {
 
     // IntelliJ Platform Gradle Plugin 2.x
     id("org.jetbrains.intellij.platform") version "2.2.1"
+    
+    // Changelog Plugin
+    id("org.jetbrains.changelog") version "2.2.1"
 }
 
 group = "com.code2prompt"
@@ -26,6 +41,15 @@ repositories {
     intellijPlatform {
         defaultRepositories()
     }
+}
+
+changelog {
+    version.set(project.version.toString())
+    // Regex to match: ### 🚀 Code2Prompt – Version 1.0.4 – What's New?
+    headerParserRegex.set(".*Version\\s+(\\d+\\.\\d+\\.\\d+).*")
+    itemPrefix.set("-")
+    keepUnreleasedSection.set(false)
+    groups.set(emptyList())
 }
 
 dependencies {
@@ -63,8 +87,35 @@ tasks {
     }
 
     patchPluginXml {
+        val pluginDescriptionContent = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+            val start = "<!-- Plugin description -->"
+            val end = "<!-- Plugin description end -->"
+            val lines = it.lines()
+            if (!lines.contains(start) || !lines.contains(end)) {
+                throw GradleException("README.md must contain '$start' and '$end'")
+            }
+            val content = lines.subList(lines.indexOf(start) + 1, lines.indexOf(end)).joinToString("\n")
+            val parser = Parser.builder().build()
+            val renderer = HtmlRenderer.builder().build()
+            val document = parser.parse(content)
+            renderer.render(document)
+        }
+        pluginDescription.set(pluginDescriptionContent)
+
+        // Get the latest available change notes from the changelog file
+        changeNotes.set(provider {
+            val version = project.version.toString()
+            val item = changelog.getOrNull(version)
+            if (item != null) {
+                changelog.renderItem(item, org.jetbrains.changelog.Changelog.OutputType.HTML)
+            } else {
+                // Fallback: Try to find a header that contains the version string manually if the plugin fails
+                ""
+            }
+        })
+
         sinceBuild.set("251") // Keep compatible with older versions if desired
-        // untilBuild.set("254.*") // Removed upper bound to support 2025.3 and higher
+        untilBuild.set("255.*")
     }
 
     signPlugin {

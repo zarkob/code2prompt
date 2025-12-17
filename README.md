@@ -1,21 +1,7 @@
 # Code2Prompt 📋🚀
 
+<!-- Plugin description -->
 **Code2Prompt** is a JetBrains IntelliJ plugin that allows developers to copy the context of their projects including full file paths, contents, and error messages from IntelliJ-based IDEs to the clipboard in a format optimized for Large Language Models (LLMs).
-
-## 📥 Installation
-
-### Install from JetBrains Marketplace (Recommended)
-1. Open **IntelliJ IDEA** (or another JetBrains IDE).
-2. Go to **File → Settings → Plugins**.
-3. Search for **Code2Prompt** and install it.
-4. Restart your IDE.
-
-### Manual Installation
-1. Download the latest **Code2Prompt.jar** from [Releases](https://github.com/zarkob/code2prompt/releases).
-2. Open IntelliJ IDEA.
-3. Navigate to **File → Settings → Plugins → Install Plugin from Disk**.
-4. Select the downloaded `.jar` file.
-5. Restart your IDE.
 
 ## 🎯 Features
 🔹 **Seamless File & Content Copying**: Copy full file paths and contents efficiently.\
@@ -32,7 +18,22 @@
   - The error message, line number, file path and the complete file content will be copied.
 - ✅ Right-click code, underlined by code inspection, in the **Editor View** → **"Error to Prompt - No Code"**.
 	- The error message, line number and file path will be copied.
+<!-- Plugin description end -->
 
+## 📥 Installation
+
+### Install from JetBrains Marketplace (Recommended)
+1. Open **IntelliJ IDEA** (or another JetBrains IDE).
+2. Go to **File → Settings → Plugins**.
+3. Search for **Code2Prompt** and install it.
+4. Restart your IDE.
+
+### Manual Installation
+1. Download the latest **Code2Prompt.jar** from [Releases](https://github.com/zarkob/code2prompt/releases).
+2. Open IntelliJ IDEA.
+3. Navigate to **File → Settings → Plugins → Install Plugin from Disk**.
+4. Select the downloaded `.jar` file.
+5. Restart your IDE.
 
 ## 🚀 How to Use
 
